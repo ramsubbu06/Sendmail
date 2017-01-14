@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.26/angular.min.js"></script>
+        <!--<script src="angular.js"></script>-->
+        <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>-->
+		
+        <script>
+          var moduleA = angular.module("MyModuleA", []);
+          moduleA.controller("MyControllerA", function($scope,$http) {
+              $http.get('happenings.json').success(function(data) {
+              $scope.name = data;
+        });
+          });
+
+          var moduleB = angular.module("MyModuleB", []);
+          moduleB.controller("MyControllerB", function($scope,$http) {
+			  $http.get("http://localhost/happemysql.php")
+   .then(function (response) {$scope.name = response.data.records;});
+              
+          });
+			
+			var modulec = angular.module("MyModuleC", []);
+           modulec.controller('MyControllerC', function($scope){
+             $scope.name="ramya";
+				});
+							
+						
+
+
+          angular.module("CombineModule", ["MyModuleA", "MyModuleB","MyModuleC"]);
+        </script>
+		<script type="text/javascript" src="app.js"></script>
+		
+		
+    </head>
+    <body ng-app="CombineModule">
+        <div>
+            <h1>Happenings from JSON</h1>
+            <div ng-controller="MyControllerA">
+			<table border="1">
+				<tr><b>Search here: </b> </tr></tr><tr><td><input ng-model="search.name"></td><td><input ng-model="search.Venue"></td><td><input ng-model="search.Date"></td></tr>
+			<tr ng-repeat="p in name | filter:search:name"><td>{{p.name}}</td><td>{{p.Venue}}</td><td>{{p.Date}}</td></tr>	
+			</table>
+			<br><br>
+			<table border="1">
+        <tr>
+        <th>Name</th>
+        <th>Venue</th>
+        <th>Date</th>
+        <th>Image</th>
+        </tr>
+			
+       <tr ng-repeat="Naphap in name">
+        <td>{{Naphap.name}}</td>
+        <td>{{Naphap.Venue}}</td>
+        <td>{{Naphap.Date}}</td>
+        <td><img ng-src="{{Naphap.flagURL}}" width="100"></td>
+      </tr>
+    </table>
+            </div>
+        </div>
+
+        <div>
+            <h1>Happenings from DB</h1>
+            <div ng-controller="MyControllerB">
+				
+				<table border="1">
+				<tr><b>Search here: </b> </tr></tr><tr><td><input ng-model="search.name"></td><td><input ng-model="search.venue"></td><td><input ng-model="search.startdate"></td></tr>
+			<tr ng-repeat="p in name | filter:search:name"><td>{{p.name}}</td><td>{{p.venue}}</td><td>{{p.startdate}}</td></tr>	
+			</table>
+			<br><br>
+             <table border="1">
+			<tr>
+        <th>Name</th>
+        <th>Venue</th>
+        <th>Date</th>
+        
+        </tr>	
+  			<tr ng-repeat="x in name">
+    	<td>{{ x.name}}</td>
+    	<td>{{ x.venue }}</td>
+      	<td>{{ x.startdate }}</td>	</tr>
+</table>
+            </div>
+        </div>
+
+
+<main>
+	<div ng-controller="MyControllerC">
+    <div class="section no-pad-bot valign-wrapper">
+      <div class="container">
+        <br><br>
+        <div class="center"><i class="material-icons center large"></i>
+          <h1 class="header orange-text">Email us your comments </h1>
+        </div>
+        <div class="center success">
+        <div class="preloader-wrapper small active" ng-if="loading">
+          <div class="spinner-layer spinner-green-only">
+            <div class="circle-clipper left">
+              <div class="circle"></div>
+            </div><div class="gap-patch">
+              <div class="circle"></div>
+            </div><div class="circle-clipper right">
+              <div class="circle"></div>
+            </div>
+          </div>
+        </div>
+          <div ng-cloak ng-if="!loading && serverMessage"><i class="material-icons center"></i>{{serverMessage}}</div>
+          </div>
+        <div class="row center">
+          <div class="input-field col s12 z-depth-2">
+            <textarea ng-model="mail.message" class="materialize-textarea"></textarea>
+          </div>
+        </div>
+        <div class="row center">
+          <button ng-click="send(mail)" class="btn-large waves-effect waves-light orange"><i class="material-icons left">send</i></button>
+		 <button onclick="submitEmail()" id="emailSubmitBn" class="btn btn-success" type="submit" >Submit</button>
+        </div>
+		<div>
+		<br><br>
+		<form method="get" action="/upload.html">
+		   <button type="submit">upload ad</button>
+		</form>
+		</div>
+        <br><br>
+
+      </div>
+    </div>
+	</div>
+  </main>
+
+    </body>
+</html>
+
+

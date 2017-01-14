@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Movie Night",
+    "Date": "Nov 18th",
+    "Venue": "Maywatts Elementary",
+    "flagURL": "http://media.sacbee.com/static/weblogs/photos/images/2013/jun13/supermoon_062413_sm/supermoon_062413_14.jpg"
+  },
+  {
+    "name": "Book and cookie club",
+    "Date": "Nov 18th",
+    "Venue": "95th street library",
+    "flagURL": "http://media.sacbee.com/static/weblogs/photos/images/2013/jun13/supermoon_062413_sm/supermoon_062413_14.jpg"
+  },
+  {
+    "name": "planetarium",
+    "Date": "Nov 18th",
+    "Venue": "waubonsie high school",
+    "flagURL": "http://media.sacbee.com/static/weblogs/photos/images/2013/jun13/supermoon_062413_sm/supermoon_062413_14.jpg"
+  }
+]
