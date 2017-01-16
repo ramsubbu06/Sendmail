@@ -16,7 +16,7 @@ app.post('/sendmail', function(req, res){
 	console.log('sendmail route');
     var options = {
         auth: {
-            api_key: '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'
+            api_key: <Enter your sengrid API_KEY here>
         }
     }
     var mailer = nodemailer.createTransport(sgTransport(options));
